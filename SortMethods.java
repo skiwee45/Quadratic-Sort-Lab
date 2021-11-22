@@ -25,7 +25,7 @@ public class SortMethods {
 
             Iterator<Integer> iterator = arr.iterator();
             while (iterator.hasNext()) {
-                stickySortComparisons++;
+                stickySortComparisons += 3;
                 int value = iterator.next();
                 if (stuckValues.containsKey(value)) {
                     //increment the stuckValues value
@@ -96,6 +96,30 @@ public class SortMethods {
                 int temp = ray[min];
                 ray[min] = ray[i];
                 ray[i] = temp;   //put smallest in pos i
+            }
+        }
+    }
+
+    public static void doubleSelectionSort(int[] ray) {
+        for (int i = 0; i < ray.length / 2; i++) {
+            int min = i;
+            int max = i;
+            for (int j = i + 1; j < ray.length - i; j++) {
+                if (ray[j] < ray[min])
+                    min = j;    //find location of smallest
+                else if (ray[j] > ray[max])
+                    max = j;    //find location of largest
+            }
+            if (min != i) {
+                int temp = ray[min];
+                ray[min] = ray[i];
+                ray[i] = temp;   //put smallest in pos i
+            }
+
+            if (max != i && max != min) {
+                int temp = ray[max];
+                ray[max] = ray[i];
+                ray[ray.length - i - 1] = temp;   //put largest in pos i
             }
         }
     }
